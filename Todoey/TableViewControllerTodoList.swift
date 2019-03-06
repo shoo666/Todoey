@@ -11,7 +11,7 @@ import UIKit
 class TableViewControllerTodoList: UITableViewController {
 
     
-    let itemArray = ["تماس با جو", "خرید باکس", "خرید قهوه"]
+    var itemArray = ["تماس با جو", "خرید باکس", "خرید قهوه"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,37 @@ class TableViewControllerTodoList: UITableViewController {
         //vaghti roye cell ha click mishe click shode namone va be halate ghabl bargarde masalan fanar poshteshe
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    // MARK: - Add New Items
+    //*********************************************
+    //button barae afzodan todo jadid
+    @IBAction func addTodoButtonPressed(_ sender: UIBarButtonItem) {
+        
+        //sakhte 1 moteghayer omomi darone in func baraE inke mohtavaE textfield alert ro begire va vaghti dokme ro zadim namayesh bede
+        var textField = UITextField()
+        //zamane zadane buttem afzodan alert namayesh bede
+        let alert = UIAlertController(title: "افزودن کار جدید", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "افزودن", style: .default) { (action) in
+            //what will happen once the user clicks the Add item button on our UIAlert
+            self.itemArray.append(textField.text!)
+            self.tableView.reloadData()
+        }
+        //ejade textfield darone alert
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "کار جدید"
+            textField = alertTextField
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     /*
